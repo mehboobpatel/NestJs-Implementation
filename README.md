@@ -44,6 +44,7 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+## Modules
 
 we will use watch mode 
 
@@ -51,7 +52,6 @@ we will use watch mode
 npm run start:dev
 ```
 
-## Stay in touch
 
 ```
 following the structure just firstly maintain root.module.ts and main.ts check for the imports in the main.ts 
@@ -108,11 +108,71 @@ where g stands for generate and mo stands for module
 
 * so this will automatctly create a folder (clicreated) and a file called clicreate.module.ts
 and will import it in root.module.ts
-in my case it got imprtd in chat.module.ts but if you creating a project from scratch it will go under root.module.ts
+in my case it got imprtd in chat.module.ts
+because bydefaul nest looks for the nearest module
+ but if you creating a project from scratch and thers just root module it will go under root.module.ts
+
+ also you can solve this by simply using
+ ```
+nest g mod nameofmod --module root
+
+ ```
 
 ![cli command](image-3.png)
 
 like this ![Alt text](image-2.png)
-## License
+
+
+
+## CONTROLLERs
+
+![controller](image-4.png)
+
+since if we run 
+
+nest g co app
+
+it will update it in nearest module so to avoid id we will user 
+
+ nest g co app --skip-import
+ ![Alt text](image-5.png)
+ 
+ and than will manually write the import code in root.module.ts and pass it under controller array
+
+
+After creating the AppController class under app.controller.ts than write the APIs,
+
+and than test if its working or not 
+here is the output:
+![Alt text](image-6.png)
+
+you can use @Redirect under get 
+```
+ @Get('/findall')
+  @Redirect("https://www.linkedin.com/in/maheboob-patel/")
+  findAllBook(): string {
+    return 'this will Find all book';
+  }
+
+  ```
+
+@Params to parameterized api call
+
+```
+  @Get('/findbookbyid/:bookid')
+findbookbyid(@Param() custobj: any): string { 
+    // here @Param is a builtin function custobj is the object and any is the type
+    //@Params is the  decorator used to extract route parameters from the URL.
+    // custobj its the parameter/variable that will hold the extracted value
+    // : any means its not expelctly defined it can be of any type
+  console.log(custobj.bookid);
+  return `This action returns the #${custobj.bookid} cat`;
+}
+```
+![Alt text](image-7.png)
+![Alt text](image-8.png)
+
+## Providers
+
 
 Nest is [MIT licensed](LICENSE).
