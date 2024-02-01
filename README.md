@@ -164,7 +164,7 @@ findbookbyid(@Param() custobj: any): string {
     // here @Param is a builtin function custobj is the object and any is the type
     //@Params is the  decorator used to extract route parameters from the URL.
     // custobj its the parameter/variable that will hold the extracted value
-    // : any means its not expelctly defined it can be of any type
+  
   console.log(custobj.bookid);
   return `This action returns the #${custobj.bookid} cat`;
 }
@@ -172,7 +172,15 @@ findbookbyid(@Param() custobj: any): string {
 ![Alt text](image-7.png)
 ![Alt text](image-8.png)
 
-## Providers
+## Providers -- Service
+
+refer to the cat folder and servcontrol for this concept
+
+Okay just because we cant load many function in one controller which will make the controller file messy and hard to debug we use providers , for code separation and making the project more modular so basically we are just making the functions in cat.service.ts and calling them in the controller file via making a constructor which refers to service in controller 
+
+so inshort we defined the routes endpoints under controller ( like in route.js if it was a MERN) and the actual action performing function under service.ts file (like in controler.js in MERN)
 
 
+
+* NOTE : mention the service inside root.module.ts under providers
 Nest is [MIT licensed](LICENSE).
